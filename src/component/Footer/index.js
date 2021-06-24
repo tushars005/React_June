@@ -1,0 +1,108 @@
+import React,{ useState , useEffect} from 'react';
+import axios from "axios"
+
+
+// const footer = () => {
+//     const [name,updatename] = useState("sachin")
+
+//     return ( 
+//         <>
+//             <h1>{name}</h1>
+//             <button onClick={()=>updatename("tushar")}>click</button>
+//         </>
+//      );
+// }
+
+const Products=()=>{
+    const [products, setProducts] = useState([])
+
+    useEffect(()=>{
+        axios("https://5d76bf96515d1a0014085cf9.mockapi.io/product")
+        .then(res=>{
+            setProducts(res.data)
+        })
+        .catch((err)=> alert(err))
+    },[])    
+
+    // useEffect(()=>{})   //componentDidmount and Didupdate
+    return(
+        <>
+            {products.length && products.map(item=>(
+                <div>
+                    <h1>{item.name}</h1>
+                    <img src = {item.preview}/>
+                    <h3>{item.price}</h3>
+                </div>
+            ))}
+        </>
+    )
+}
+export default Products
+
+// const Footer = () => {
+//     const [count, updatecount] = useState(0)
+    
+//     return (  
+//         <>
+//         <h1>{count}</h1>
+//         <button onClick={()=>{
+//             const x = count+1
+//             updatecount(x)}}>increment</button>
+//         </>
+//     );
+// }
+ 
+// export default Footer;
+ 
+
+
+// class footer extends PureComponent {
+//     constructor(props) {
+//         super(props);
+//         this.state = { 
+//             enter:0,
+//             dis:0,
+//             todos:[]
+//          }
+//     }
+//     componentDidMount(){
+//         axios.get("https://jsonplaceholder.typicode.com/todos/1").then((res)=>{
+            
+//             this.setState({todos: res.data});
+//         });
+//         // axios({
+//         //     method:"post", //get 
+//         //     url:"https://jsonplaceholder.typicode.com/todos/",
+//         //     data:{
+//         //         name:"Akash"
+//         //     },
+//         //     params:{
+//         //         id:1
+//         //     },
+//         //     header: {}
+//         // })
+//         // .then(res=>console.log(res))
+//         // .catch(err=> console.log("Error",err))
+//     }
+//     render() { 
+//         const {todos} = this.state;
+//         return (  
+//             <div>
+//                 {console.log("render")}
+//                 <h1>{this.state.dis}</h1>
+//                 <input onChange={(e)=>{
+//                     this.setState({enter:e.target.value})
+//                 }}></input>
+
+                
+
+//                 <button onClick = {()=>{
+//                     this.setState({dis:this.state.enter})
+//                 }}>submit</button>
+
+//             </div>
+//         )
+//     }
+// }
+ 
+// export default footer;

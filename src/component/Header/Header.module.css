@@ -1,0 +1,16 @@
+.heading {
+  color: blue;
+}
+
+.dis {
+  visibility: hidden;
+  opacity: 0;
+}
+.main:hover {
+  /* background-color: black; */
+}
+.main:hover .dis {
+  visibility: visible;
+  opacity: 1;
+  color: red;
+}
