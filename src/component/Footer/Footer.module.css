@@ -1,0 +1,21 @@
+.image {
+  height: 200px;
+  width: 200px;
+}
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.box {
+  box-sizing: border-box;
+  width: 30vw;
+  height: 550px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

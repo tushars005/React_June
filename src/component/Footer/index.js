@@ -1,4 +1,5 @@
 import React,{ useState , useEffect} from 'react';
+import styles from './Footer.module.css'
 import axios from "axios"
 
 
@@ -15,7 +16,8 @@ import axios from "axios"
 
 const Products=()=>{
     const [products, setProducts] = useState([])
-
+    // const [cart, setCart] = useState([])
+    
     useEffect(()=>{
         axios("https://5d76bf96515d1a0014085cf9.mockapi.io/product")
         .then(res=>{
@@ -24,17 +26,22 @@ const Products=()=>{
         .catch((err)=> alert(err))
     },[])    
 
-    // useEffect(()=>{})   //componentDidmount and Didupdate
+    useEffect(()=>{
+        console.log("ComponentDidMount and Didupdate")
+    })   //componentDidmount and Didupdate
     return(
-        <>
+        <div className={styles.main}>
+
             {products.length && products.map(item=>(
-                <div>
+                <div className= {styles.box}>
                     <h1>{item.name}</h1>
-                    <img src = {item.preview}/>
+                    <img src = {item.preview} className={styles.image}/>
                     <h3>{item.price}</h3>
+                    <p className={styles.desc}>{item.description}</p>
+
                 </div>
             ))}
-        </>
+        </div>
     )
 }
 export default Products

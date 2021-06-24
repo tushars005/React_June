@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styles from './Header.module.css'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {convertToUpper as toUpper}  from '../../utils/constants'
 import { getNodeText, render } from '@testing-library/react';
 
