@@ -1,6 +1,7 @@
 .image {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
+  margin-left: 25px;
 }
 .desc {
   display: -webkit-box;
@@ -11,7 +12,10 @@
 .box {
   box-sizing: border-box;
   width: 30vw;
-  height: 550px;
+  height: 600px;
+  margin: 10px;
+  border: 2px solid purple;
+  margin-left: 2vw;
 }
 
 .main {
