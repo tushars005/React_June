@@ -2,7 +2,7 @@ import React,{ useState , useEffect} from 'react';
 import styles from './Footer.module.css'
 import axios from "axios"
 
-
+import {Link} from "react-router-dom"
 // const footer = () => {
 //     const [name,updatename] = useState("sachin")
 
@@ -34,11 +34,14 @@ const Products=()=>{
 
             {products.length && products.map(item=>(
                 <div className= {styles.box}>
+                    
                     <h1>{item.name}</h1>
+                    <Link to ={`/product/${item.id}`}>
                     <img src = {item.preview} className={styles.image}/>
+                    </Link>
                     <h3>{item.price}</h3>
                     <p className={styles.desc}>{item.description}</p>
-
+                    
                 </div>
             ))}
         </div>
