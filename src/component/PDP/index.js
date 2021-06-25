@@ -13,7 +13,8 @@ const PDP = (props) => {
         axios(`${url}${id}`)
         .then(res=> setProduct(res.data))
         .catch(err=>alert(err))
-    })
+    },[])
+
     const path = process.env.PUBLIC_URL
     return (
         
@@ -36,7 +37,12 @@ const PDP = (props) => {
                 <div>
                     {product.photos&&product.photos.length && product.photos.map((item)=>(
                         
-                            <img src = {item} />
+                            <img src = {item} onClick={()=>{
+                                
+                                
+                                setProduct({...product, preview:item})
+                                
+                            }}/>
                         
                         )
                     )}

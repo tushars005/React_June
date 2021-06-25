@@ -17,7 +17,7 @@ import {Link} from "react-router-dom"
 const Products=()=>{
     const [products, setProducts] = useState([])
     // const [cart, setCart] = useState([])
-    
+    const path = process.env.PUBLIC_URL
     useEffect(()=>{
         axios("https://5d76bf96515d1a0014085cf9.mockapi.io/product")
         .then(res=>{
@@ -36,7 +36,7 @@ const Products=()=>{
                 <div className= {styles.box}>
                     
                     <h1>{item.name}</h1>
-                    <Link to ={`/product/${item.id}`}>
+                    <Link to ={`${path}/product/${item.id}`}>
                     <img src = {item.preview} className={styles.image}/>
                     </Link>
                     <h3>{item.price}</h3>
