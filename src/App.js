@@ -12,6 +12,9 @@ import About from "./component/About"
 import PLP from "./component/PLP"
 import PDP from "./component/PDP"
 import Cart from "./component/Cart"
+import SignIn from './component/SignIn';
+import SignUp from './component/SignUp'
+import Table from './component/Table'
 
 const App = () => {
   const path = process.env.PUBLIC_URL
@@ -25,7 +28,12 @@ const App = () => {
       <Route path={`${path}/cart`}  component={Cart}/>
       <Route path={`${path}/products`}  component={PLP}/>
       <Route path={`${path}/product/:id`} component={PDP}/>
+      <Route path={`${path}/signin`}  component={SignIn}/>
+      <Route path={`${path}/signup`}  component={SignUp}/>
+      <Route path={`${path}/table`} component={Table}/>
       <Route component={()=><h1>404</h1>}/>
+      
+      
       </Switch>
       
       

@@ -1,8 +1,12 @@
 import React,{ useState , useEffect} from 'react';
 import styles from './Footer.module.css'
 import axios from "axios"
-
+import Cart from "../Cart"
 import {Link} from "react-router-dom"
+import {connect} from "react-redux"
+import {getProducts} from "../../redux/actions"
+import {addcart} from "../../redux/actions"
+
 // const footer = () => {
 //     const [name,updatename] = useState("sachin")
 
@@ -14,21 +18,28 @@ import {Link} from "react-router-dom"
 //      );
 // }
 
-const Products=()=>{
-    const [products, setProducts] = useState([])
+const Products=(props)=>{
+    // const [products, setProducts] = useState([])
     // const [cart, setCart] = useState([])
+    const {products,cart} = props
     const path = process.env.PUBLIC_URL
     useEffect(()=>{
         axios("https://5d76bf96515d1a0014085cf9.mockapi.io/product")
         .then(res=>{
-            setProducts(res.data)
+            props.sendProducts(res.data)
         })
         .catch((err)=> alert(err))
     },[])    
+    
 
     useEffect(()=>{
-        console.log("ComponentDidMount and Didupdate")
-    })   //componentDidmount and Didupdate
+        console.log("cart", cart);
+    })
+    console.log("Products", products);
+    console.log("cart", cart);
+    // useEffect(()=>{
+    //     console.log("ComponentDidMount and Didupdate")
+    // })   //componentDidmount and Didupdate
     return(
         <div className={styles.main}>
 
@@ -41,13 +52,29 @@ const Products=()=>{
                     </Link>
                     <h3>{item.price}</h3>
                     <p className={styles.desc}>{item.description}</p>
+                    <Link to ={`${path}/cart`}>
+                        <button onClick={()=>props.sendCart(item)}>Add to cart</button>
+
+                    </Link>
                     
                 </div>
             ))}
         </div>
     )
 }
-export default Products
+
+
+const mapStateToProps = (store) => ({
+    products: store.products,
+    cart:store.cart
+  });
+  
+  const mapDispatchToProps = (dispatch) => ({
+    sendProducts: (payload) => dispatch(getProducts(payload)),
+    sendCart: (payload)=> dispatch(addcart(payload))
+  });
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Products);
 
 // const Footer = () => {
 //     const [count, updatecount] = useState(0)

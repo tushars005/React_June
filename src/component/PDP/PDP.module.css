@@ -1,0 +1,8 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+.smallimg {
+  width: 100px;
+  height: 130px;
+}

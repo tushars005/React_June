@@ -2,10 +2,11 @@ import axios from 'axios';
 import React,{useEffect, useState } from 'react';
 import Footer from '../Footer'
 import {Link} from "react-router-dom"
-
+import styles from "./PDP.module.css"
 
 const PDP = (props) => {
     const [product,setProduct]= useState({});
+    const [active, setactive] = useState("");
     // const [source, setsource] = useState(product.preview);
     const {id} = props.match.params
     const url = "https://5d76bf96515d1a0014085cf9.mockapi.io/product/"
@@ -18,15 +19,14 @@ const PDP = (props) => {
     const path = process.env.PUBLIC_URL
     return (
         
-        <div>
+        <div className={styles.main}>
+            {console.log(active)}
             
-            <h1>PDP</h1>
-            <h1>Product -{id}</h1>
             <div className="col-6" >
-                <img src = {product.preview}  style = {{width:"100%"}}/>
+                <img src = {product.preview}  style = {{width:"70%"}}/>
 
             </div>
-            <div classNam="col-6">
+            <div className="col-6">
                 <h1>{product.id}</h1>
                 <h2>{product.name}</h2>
                 <h3>{product.brand}</h3>
@@ -36,9 +36,10 @@ const PDP = (props) => {
                 <h4>Product Preview</h4>
                 <div>
                     {product.photos&&product.photos.length && product.photos.map((item)=>(
-                        
-                            <img src = {item} onClick={()=>{
+                            
+                            <img style ={item===active?{border:"4px solid pink"}:{border:""}} className={styles.smallimg} src = {item} onClick={()=>{
                                 
+                                setactive(item)
                                 
                                 setProduct({...product, preview:item})
                                 
@@ -48,12 +49,12 @@ const PDP = (props) => {
                     )}
                     
                 </div>
-                <Link to ={{
+                {/* <Link to ={{
                     pathname:`${path}/cart`,
                     product_id :id
                 }}>
                         <button>Add to cart</button>
-                </Link>
+                </Link> */}
                 
             </div>
             
